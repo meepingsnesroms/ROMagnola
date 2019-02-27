@@ -1,0 +1,98 @@
+/******************************************************************************
+ ******************************************************************************
+ *** From <emulator>/SrcShared/Bank_ROM.cpp
+ ******************************************************************************
+ ******************************************************************************/
+
+// ===========================================================================
+//		¥ Flash Bank Accessors
+// ===========================================================================
+// These functions provide fetch and store access to the emulator's read only
+// memory.
+
+/*
+	There are five types of flash that our flash manager routines identify:
+	Mitsubishi, Hitachi, Intel, AMD, and Fujitsu.  Of these, only the last
+	two are really supported right now.  Unfortunately, they are the hardest
+	to emulate.  :-(
+
+	To identify the kind of flash being used, our ROM routines:
+
+		- Read a word from FLASHBASE
+		- Write 0x00FF to FLASHBASE
+		- Read a word from FLASHBASE
+		- Write 0x0090 to FLASHBASE
+		- Read a manufacturer ID (word) from FLASHBASE
+		- Read a device ID (word) from FLASHBASE + 2
+		- Write 0x00FF to FLASHBASE
+
+	Mitsubishi: manufacturer == 0x001C, device == 0x005E
+	Hitachi:	manufacturer == 0x0007, device == 0x0086
+	Intel:		manufacturer == 0x0089, device == 0x0091
+
+	If the flash is not one of those, our ROM routines:
+
+		- Read a word from FLASHBASE
+		- Write 0x00F0 to FLASHBASE
+		- Write 0x00AA to FLASHBASE + 0xAAAA
+		- Write 0x0055 to FLASHBASE + 0x5554
+		- Write 0x0090 to FLASHBASE + 0xAAAA
+		- Read a manufacturer ID (word) from FLASHBASE
+		- Read a device ID (word) from FLASHBASE + 2
+		- Write 0x00F0 to FLASHBASE
+
+	AMD:		manufacturer == 0x0001, device == 0x0049
+	Fujitsu:	manufacturer == 0x0004, device == 0x0049
+
+
+	To erase a word of flash, our ROM routines:
+
+		AMD, Fujitsu:
+
+		- Read a word from FLASHBASE
+		- Write 0x00F0 to FLASHBASE
+		- Write 0x00AA to FLASHBASE + 0xAAAA
+		- Write 0x0055 to FLASHBASE + 0x5554
+		- Write 0x0080 to FLASHBASE + 0xAAAA
+		- Write 0x00AA to FLASHBASE + 0xAAAA
+		- Write 0x0055 to FLASHBASE + 0x5554
+		- Write 0x0030 to location to be erased
+		- Check erase location for 0x0080
+		- Read from FLASHBASE
+		- Write 0x00F0 to FLASHBASE
+
+		Mitsubishi, Hitachi:
+
+		- Read a word from FLASHBASE
+		- Write 0x00FF to FLASHBASE
+		- Write 0x0020 to FLASHBASE
+		- Write 0x00D0 to location to be erased
+		- Check erase location for 0x0080
+			-- If 0x0020 is also set, an error occured
+		- Read from FLASHBASE
+		- Write 0x00FF to FLASHBASE
+
+		Intel
+
+		- Not supported
+
+	To program a block of flash:
+
+		AMD, Fujitsu:
+
+		- Read a word from FLASHBASE
+		- Write 0x00F0 to FLASHBASE
+		- For each word to write
+			- If the word is already there, continue
+			- Write 0x00AA to FLASHBASE + 0xAAAA
+			- Write 0x0055 to FLASHBASE + 0x5554
+			- Write 0x00A0 to FLASHBASE + 0xAAAA
+			- Write the word to the dest location
+			- Check write location for 0x0080
+		- Read from FLASHBASE
+		- Write 0x00F0 to FLASHBASE
+
+		Mitsubishi, Hitachi, Intel:
+
+		- Not supported
+*/

@@ -1,7 +1,7 @@
 CC		= gcc
 CFLAGS	= -Wall -g -IfakeSysIncludes -m32 
-LDFLAGS	= -L. -lromeo 
-AR		= ar crv
+LDFLAGS	= -L. -lromeo -m32 
+AR		= ar --target=mach-o-i386 -rcv
 
 LIB		= libromeo.a
 LIBOBJS	= utils.o byte_swap.o relocate.o translate.o Crc.o rom.o \

@@ -420,6 +420,7 @@ typedef CardHeaderType*		CardHeaderPtr;
 #define	memCardHeaderFlagRAMOnly	0x0001	// RAM only card
 #define	memCardHeaderFlag328			0x0010	// ROM Supports 68328 processor
 #define	memCardHeaderFlagEZ			0x0020	// ROM SUpports 68EZ328 processor
+#define  memCardHeaderFlagVZ        0x0040   // ROM Supports 68VZ328 processor
 #define	memCardHeaderFlag230K		0x1000	// SmallROM supports 230Kbps
 
 

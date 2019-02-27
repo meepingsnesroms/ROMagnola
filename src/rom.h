@@ -58,7 +58,7 @@ typedef struct {
 	UInt16		heap_flags;
 } ROMVersion;
 
-#define romNumROMVers 7
+#define romNumROMVers 8
 extern ROMVersion ROMVers[romNumROMVers];
 
 // A Database list gives a list of database offsets

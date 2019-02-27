@@ -19,6 +19,31 @@
  */
 ROMVersion ROMVers[romNumROMVers] = 
 {
+   {0x0410,                        // PalmOS version
+      0x10000000,                     // ROM Base
+      0x00008000,                     // Small ROM Size (default)
+      0x00008000,                     // Small ROM card size (default)
+      small_PRC_ROMS_350_rom,
+      "D,dr+",                        // Layout of PRCs in small ROM
+      "D,dr+",                        // Layout of PRCs added to small ROM
+      0x00400000 - 0x10000,               // Big ROM Size (default)
+      0x00400000 - 0x10000,               // Big ROM card size (default)
+      large_PRC_ROMS_350_rom,
+      "D,dr+",                        // Layout of PRCs in large ROM
+      "D,dr+",                        // Layout of PRCs added to big ROM
+      DEF_CARD_NAME,                     // Card Name
+      DEF_CARD_MANU,                     // Card Manufacturer Name
+      0,                              // Card Init Stack
+      0x05,                           // Card Header Version
+      memCardHeaderFlagVZ,               // Card Flags
+      0x01,                           // Card Version
+      0x08000,                        // RO Params offset
+      0x08000,                        // Big ROM offset
+      DEF_STORE_NAME,                  // Store Name
+      0x01,                           // Store Version
+      0x0,                           // Store Flags
+      memHeapFlagVers4 | memHeapFlagReadOnly   // Heap Flags
+   },
 	{0x0350,								// PalmOS version
 	 0x10c00000,							// ROM Base
 	 0x00008000,							// Small ROM Size (default)

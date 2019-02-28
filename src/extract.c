@@ -10,8 +10,9 @@
 #include "translate.h"
 #include "utils.h"
 
-#define	ROM_BASE				0x10C00000
-#define PALMOS_1_SIZE			0x00080000
+#define ROM_BASE                 0x10C00000
+#define PALMOS_4_ROM_BASE        0x10000000
+#define PALMOS_1_SIZE			   0x00080000
 #define PALMOS_1_BIG_ROM_OFFSET	0x00003000
 #define PALMOS_4_BIG_ROM_OFFSET	0x00008000
 
@@ -168,10 +169,13 @@ ROMPtr	ReadROM	(int	hROM,
 		// for the reset vector -- that must be handled specially.
 		ROM_base = 0x00C00000;
 	}
+   else if(Card.hdrVersion == 0x03 || Card.hdrVersion == 0x04){
+      // The ROM_BASE for version 3 is 0x10C00000 (ROM_BASE)
+      ROM_base = ROM_BASE;
+   }
 	else
 	{
-		// The ROM_BASE for version 3 is 0x10C00000 (ROM_BASE)
-		ROM_base = ROM_BASE;
+      ROM_base = PALMOS_4_ROM_BASE;
 	}
 
 

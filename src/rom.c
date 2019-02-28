@@ -26,8 +26,8 @@ ROMVersion ROMVers[romNumROMVers] =
       small_PRC_ROMS_350_rom,
       "D,dr+",                        // Layout of PRCs in small ROM
       "D,dr+",                        // Layout of PRCs added to small ROM
-      0x00400000 - 0x10000,               // Big ROM Size (default)
-      0x00400000 - 0x10000,               // Big ROM card size (default)
+      0x00400000 - 0x08000,               // Big ROM Size (default)
+      0x00400000 - 0x08000,               // Big ROM card size (default)
       large_PRC_ROMS_350_rom,
       "D,dr+",                        // Layout of PRCs in large ROM
       "D,dr+",                        // Layout of PRCs added to big ROM

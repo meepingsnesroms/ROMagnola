@@ -356,21 +356,21 @@ typedef	struct {
 	(ver>1 ? ((MemChunkHeaderPtr)p)->hOffset  : ((Mem1ChunkHeaderPtr)p)->hOffset)
 
 //the operators above where being written to, I guess that worked at somepoint, but its definitely invalid behavior
-static void memUChunkSizeAssign(MemChunkHeaderPtr p, unsigned int ver, unsigned int val){
+static void memUChunkSizeAssign(MemChunkHeaderUnionType* p, unsigned int ver, unsigned int val){
    if(ver>1)
       ((MemChunkHeaderPtr)p)->size = val;
    else
       ((Mem1ChunkHeaderPtr)p)->size = val;
 }
 
-static void memUChunkHOffsetAssign(MemChunkHeaderPtr p, unsigned int ver, int val){
+static void memUChunkHOffsetAssign(MemChunkHeaderUnionType* p, unsigned int ver, int val){
    if(ver>1)
       ((MemChunkHeaderPtr)p)->hOffset = (val);
    else
       ((Mem1ChunkHeaderPtr)p)->hOffset = (val);
 }
 
-static void memUHeapSizeAssign(MemHeapHeaderPtr p, unsigned int ver, unsigned int val){
+static void memUHeapSizeAssign(MemHeapHeaderUnionType* p, unsigned int ver, unsigned int val){
    if(ver>2)
       ((MemHeapHeaderPtr)p)->size = val;
    else if(ver>1)

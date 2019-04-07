@@ -46,7 +46,7 @@ typedef HeapListType*		HeapListPtr;
 #define memUHeapFirstChunk(p,ver) \
 			(MemChunkHeaderUnionType*)((UInt8*)(p) + (memUSizeOfHeapHeader(ver)))
 
-#define	memUChunkVerFromHeapVer(v)	\
+#define	memUChunkVerFromHeapVer(v) \
 		((v) < 2 ? 1 : 2)
 
 #define	memUChunkIsTerminator(p,ver)	\

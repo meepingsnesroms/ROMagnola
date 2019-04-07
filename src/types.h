@@ -4,7 +4,6 @@
 /********************************************************************
  * Elementary data types
  ********************************************************************/
-#include <endian.h>
 
 #define CPU_ENDIAN_LITTLE	__LITTLE_ENDIAN
 #define CPU_ENDIAN_BIG		__BIG_ENDIAN
@@ -18,7 +17,7 @@
 
 // Fixed size data types
 typedef signed char		Int8;
-typedef signed short	Int16;	
+typedef signed short	   Int16;	
 typedef signed long		Int32;
 
 typedef unsigned char	UInt8;

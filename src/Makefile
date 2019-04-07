@@ -1,5 +1,5 @@
 CC		= gcc
-CFLAGS	= -Wall -g -IfakeSysIncludes -m32 
+CFLAGS	= -Wall -g -m32 
 LDFLAGS	= -L. -lromeo -m32 
 AR		= ar --target=mach-o-i386 -rcv
 

@@ -92,8 +92,10 @@ static inline	UInt32	SizeOfChunk	(HeapListPtr	pHeapList,
 	
 	if (! (pChunk = LocateChunk (pHeapList, addr)))
 		return 0;
-
-	version = memUChunkVer (pHeapList->heapOffset[0]);
+   
+   version = memUChunkVer (pHeapList->heapOffset[0]);
+   
+   printf("pchunk %d, size:0x%08X\n", pChunk, memUChunkPayloadSize (pChunk, version));
 
 	return (memUChunkPayloadSize (pChunk, version));
 }

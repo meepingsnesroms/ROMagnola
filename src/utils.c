@@ -381,12 +381,17 @@ int DBTotalSize (ROMPtr			pROM,
 	if (pDB->sortInfoID)
 		Total += SizeOfChunk (pROM->pHeapList, pDB->sortInfoID);
 			
+   printf("Is I good? 0x%08X\n", Total);
+   
 	for (idex = 0; idex < pDB->recordList.numRecords; idex++)
 	{
 		Total += SizeOfRecordContents (pROM, 0, &pDB->recordList, 
 									   IsResource (pDB) ? RL_RESOURCES : RL_RECORDS,
 									   idex);
 	}
+   
+   printf("Is I good? 0x%08X\n", Total);
+   
 	return Total;
 }
 
